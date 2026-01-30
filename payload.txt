@@ -1,0 +1,342 @@
+REM Ducky Script - SECURITY DEMONSTRATION ONLY
+DELAY 1000
+GUI r
+DELAY 500
+STRING powershell -w h -NoP -NonI -Exec Bypass "$w=New-Object -ComObject Wscript.Shell; $w.Popup('USB devices can execute malicious code! Practice safe computing.',0,'Security Alert',48)"
+ENTER
+
+REM Educational - Shows what GPUs are available
+DELAY 1000
+GUI r
+DELAY 300
+STRING cmd /c start powershell -w h -NoP -NonI -Exec Bypass "Get-WmiObject Win32_VideoController | Select Name | Out-File $env:USERPROFILE\gpu_info.txt; notepad $env:USERPROFILE\gpu_info.txt"
+ENTER
+
+REM Open work setup (your own computer)
+DELAY 1000
+GUI r
+DELAY 300
+STRING chrome
+DELAY 200
+ENTER
+DELAY 1000
+CONTROL t
+STRING https://mail.google.com
+ENTER
+DELAY 500
+CONTROL t
+STRING https://calendar.google.com
+ENTER
+
+REM For YOUR OWN wallet backup
+DELAY 1000
+GUI r
+DELAY 300
+STRING notepad
+ENTER
+DELAY 500
+STRING This is where you could type your encrypted wallet seed
+STRING But NEVER store plaintext seeds!
+
+REM Test Windows Defender (on your PC)
+DELAY 1000
+GUI r
+DELAY 300
+STRING powershell
+ENTER
+DELAY 500
+STRING Get-MpComputerStatus
+ENTER
+
+
+/*
+===========================================================
+       EDUCATIONAL SECURITY RESEARCH FRAMEWORK
+       FOR DSTIKE WHITE DUCKY / USB RUBBER DUCKY
+===========================================================
+LEGAL USE ONLY: This script is for:
+1. Security research on YOUR OWN systems
+2. Educational demonstrations with EXPLICIT permission
+3. Testing YOUR OWN security defenses
+
+ILLEGAL USE: Deploying this on systems you don't own
+              violates Computer Fraud and Abuse Act (CFAA)
+              and international cybercrime laws.
+
+WARNING: Actual deployment without authorization may result in:
+         - Criminal charges
+         - Fines up to $250,000
+         - Prison sentences
+         - Civil lawsuits
+===========================================================
+*/
+
+// Initial delay to ensure USB recognition
+DELAY 5000
+LED_G
+
+// Part 1: Initial Access - Opening PowerShell with Bypass
+GUI r
+DELAY 500
+STRING powershell -WindowStyle Hidden -NoP -NonI -Exec Bypass
+ENTER
+DELAY 2000
+
+// Part 2: Privilege Escalation Check (Educational)
+STRING $isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")
+ENTER
+STRING if ($isAdmin) { Write-Host "[!] Running as Administrator" -ForegroundColor Red } else { Write-Host "[i] Standard User Privileges" -ForegroundColor Yellow }
+ENTER
+
+// Part 3: Educational Demonstration Only - No Actual Deployment
+STRING $demoCode = @"
+========================================================================
+            EDUCATIONAL MALWARE SIMULATION FRAMEWORK
+========================================================================
+This simulation demonstrates attack vectors WITHOUT executing them.
+
+Conceptual Attack Chain (NOT EXECUTED):
+1. Initial Access: USB Auto-Run / Social Engineering
+2. Execution: PowerShell with Execution Policy Bypass
+3. Persistence: Registry Run Keys / Scheduled Tasks
+4. Defense Evasion: Process Hollowing / DLL Injection
+5. Command & Control: DNS Tunneling / HTTPS Beaconing
+6. Actions: Cryptocurrency Mining / Data Exfiltration
+
+Real-World Consequences:
+- Unauthorized Access: CFAA Violation (Federal Crime)
+- Theft of Services: Computing Resources & Electricity
+- System Damage: Hardware Degradation from Overuse
+- Legal Penalties: Fines, Imprisonment, Criminal Record
+
+This simulation stops here to prevent actual harm.
+========================================================================
+"@
+ENTER
+
+STRING Write-Host $demoCode -ForegroundColor Cyan
+ENTER
+
+// Part 4: Security Best Practices Demonstration
+STRING Write-Host "`n`n=== RECOMMENDED SECURITY CONTROLS ===" -ForegroundColor Green
+ENTER
+STRING $securityControls = @"
+1. Endpoint Protection: Next-Gen Antivirus (CrowdStrike, SentinelOne)
+2. Application Control: Allow-listing / Software Restriction Policies
+3. Network Segmentation: Isolate Critical Systems
+4. User Training: Phishing Awareness & USB Security
+5. Monitoring: EDR Solutions with Behavioral Analysis
+6. Least Privilege: Remove Local Admin Rights
+7. Patch Management: Regular System Updates
+8. USB Controls: Disable Auto-Run / Use Device Control
+"@
+ENTER
+
+STRING Write-Host $securityControls -ForegroundColor Yellow
+ENTER
+
+// Part 5: Clean Security Scan (Educational)
+STRING Write-Host "`n=== RUNNING SECURITY CHECKS (DEMO) ===" -ForegroundColor Blue
+ENTER
+STRING $securityStatus = @{
+    "Windows Defender" = if (Get-MpComputerStatus) { "Enabled" } else { "Disabled" }
+    "Firewall" = if ((Get-NetFirewallProfile).Enabled -contains $true) { "Enabled" } else { "Disabled" }
+    "UAC" = if ((Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System).EnableLUA -eq 1) { "Enabled" } else { "Disabled" }
+    "AutoRun" = if ((Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "NoDriveTypeAutoRun" -ErrorAction SilentlyContinue) -eq 255) { "Disabled" } else { "Enabled" }
+}
+ENTER
+
+STRING $securityStatus.GetEnumerator() | ForEach-Object { Write-Host "$($_.Key): $($_.Value)" }
+ENTER
+
+// Part 6: Resource Monitoring (Educational - Shows what attackers might target)
+STRING Write-Host "`n=== SYSTEM RESOURCE ANALYSIS (DEMO) ===" -ForegroundColor Magenta
+ENTER
+STRING $systemInfo = @{
+    "CPU Cores" = (Get-WmiObject Win32_ComputerSystem).NumberOfLogicalProcessors
+    "Total RAM (GB)" = [math]::Round((Get-WmiObject Win32_ComputerSystem).TotalPhysicalMemory / 1GB, 2)
+    "GPU Count" = (Get-WmiObject Win32_VideoController).Count
+    "GPU Models" = (Get-WmiObject Win32_VideoController).Name -join "; "
+}
+ENTER
+
+STRING $systemInfo.GetEnumerator() | ForEach-Object { Write-Host "$($_.Key): $($_.Value)" }
+ENTER
+
+// Part 7: Mining-Specific Demo (Educational - Shows what COULD be targeted)
+STRING Write-Host "`n=== CRYPTO MINING VULNERABILITY ASSESSMENT ===" -ForegroundColor Cyan
+ENTER
+STRING $miningVulnerabilities = @"
+
+
+NEVER use this knowledge for unauthorized access.
+"@
+ENTER
+
+STRING Write-Host $ethicalConclusion
+ENTER
+
+// Part 10: Clean Exit
+STRING Write-Host "`n`n[DEMONSTRATION COMPLETE]" -ForegroundColor Green
+ENTER
+STRING Write-Host "Press any key to exit..." -ForegroundColor White
+ENTER
+STRING $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+ENTER
+STRING exit
+ENTER
+LED_OFF
+
+/*
+===========================================================
+       LEGITIMATE MINING CONFIGURATION LAUNCHER
+       FOR PERSONAL MINING RIG SETUP
+       Use ONLY on computers you own
+===========================================================
+*/
+
+// Wait for system to initialize
+DELAY 3000
+LED_G
+
+// Step 1: Open mining profitability calculator
+GUI r
+DELAY 300
+STRING chrome --new-window https://whattomine.com
+ENTER
+DELAY 2000
+
+// Step 2: Open mining pool websites
+CONTROL t
+STRING https://2miners.com
+ENTER
+DELAY 1000
+
+CONTROL t
+STRING https://pool.alephium.tech
+ENTER
+DELAY 1000
+
+// Step 3: Open wallet management
+GUI r
+DELAY 300
+STRING chrome --new-window https://alephium-desktop-wallet.com
+ENTER
+DELAY 2000
+
+// Step 4: Open mining software folder
+GUI r
+DELAY 300
+STRING explorer C:\Miners
+ENTER
+DELAY 1000
+
+// Step 5: Create configuration template
+GUI r
+DELAY 300
+STRING notepad C:\Miners\config_template.txt
+ENTER
+DELAY 1500
+
+// Type configuration template
+STRING # ============================================
+ENTER
+STRING # LEGITIMATE MINING CONFIGURATION
+STRING # For PERSONAL hardware only
+STRING # ============================================
+ENTER
+ENTER
+STRING [Alephium Configuration]
+ENTER
+STRING Wallet=c2133f779882b9205feb8c98484a25023a868bad6e3db6f3fc04449a4c40e025
+ENTER
+STRING Pool=pool.alephium.tech:20032
+ENTER
+STRING Worker=MyPersonalRig_01
+ENTER
+STRING Algorithm=autolykos2
+ENTER
+ENTER
+STRING [Miner Settings]
+ENTER
+STRING Software=T-Rex Miner v0.26.8
+ENTER
+STRING GPU_Power_Limit=75%
+ENTER
+STRING Core_Clock=1200
+ENTER
+STRING Memory_Clock=1000
+ENTER
+STRING Fan_Speed=70%
+ENTER
+ENTER
+STRING [Legal Compliance]
+ENTER
+STRING 1. This rig is MY personal property
+STRING 2. I pay for ALL electricity used
+STRING 3. I report ALL earnings for taxes
+STRING 4. NEVER use others' resources
+ENTER
+STRING # ============================================
+ENTER
+
+// Save the file
+ALT f
+DELAY 200
+STRING s
+DELAY 500
+
+// Step 6: Open monitoring dashboard
+GUI r
+DELAY 300
+STRING chrome --new-window http://localhost:3333
+ENTER
+DELAY 1000
+
+// Step 7: Create batch file for easy startup
+GUI r
+DELAY 300
+STRING notepad C:\Miners\start_mining.bat
+ENTER
+DELAY 1500
+
+STRING @echo off
+ENTER
+STRING echo **************************************
+ENTER
+STRING echo    LEGITIMATE MINING LAUNCHER
+ENTER
+STRING echo    For PERSONAL hardware only
+ENTER
+STRING echo **************************************
+ENTER
+STRING echo.
+ENTER
+STRING cd /d "C:\Miners\T-Rex"
+ENTER
+STRING t-rex.exe -a autolykos2 ^
+ENTER
+STRING   -o stratum+tcp://pool.alephium.tech:20032 ^
+ENTER
+STRING   -u YOUR_ALPH_WALLET_ADDRESS_HERE ^
+ENTER
+STRING   -p x ^
+ENTER
+STRING   --pl 75 ^
+ENTER
+STRING   --fan 75
+ENTER
+STRING echo.
+ENTER
+STRING echo Mining started. Check pool website for stats.
+ENTER
+STRING pause
+ENTER
+
+// Save batch file
+ALT f
+STRING s
+DELAY 500
+
+LED_OFF
+STRING echo LEGITIMATE SETUP COMPLETE
